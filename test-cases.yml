@@ -1,13 +1,51 @@
 ---
 - summary: |
-  
+    Успешная регистрация нового пользователя на сайте
   requirement: |
-    
+    При вводе требуемых данных пользователь проходит регистрацию на сайте
   prerequisites: |
-    
+    Открыта форма Sign up
   test-data: |
-    
+    Empty
   steps:
-    
+    - Нажать кнопку "Sign up"
+    - Ввести "Nickname"
+    - Ввести валидный "Email"
+    - Ввести "Password"
+    - Ввести "Password Confirmation"
+    - Нажать на кнопку "Submit"
   expected-result: |
-   
+    Пользователь успешно зарегистрирован
+    
+- summary: |
+    Проверка успешной авторизации пользователя
+  requirement: |
+    При верном вводе логина и пароля пользователь должен успешно авторизоваться в системе
+  prerequisites: |
+    Открыта форма Sign in
+  test-data: |
+    Email = serejadwydow@gmail.com
+    Password = 248jqC
+  steps:
+    - Ввести Email
+    - Ввести Password
+    - Нажать Submit
+  expected-result: |
+    Пользователь успешно авторизован
+
+- summary: |
+    Регистрация нового профиля с пустыми полями 
+  requirement: |
+    При отсутствии данных в полях регистрация будет невозможна
+  prerequisites:
+    Открыта форма Sign up
+  test-data: |
+    Empty
+  steps:
+    - Ввести Email
+    - Ввести Password
+    - Ввести повторно Password
+    - Нажать на кнопку Submit
+  expected-result: |
+    Под каждым полем выводится надпись, сообщающая о необходимости заполнить поле
+  
