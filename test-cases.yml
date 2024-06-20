@@ -41,12 +41,28 @@
   test-data: |
     Empty
   steps:
-    - Ввести Email
-    - Ввести Password
-    - Ввести повторно Password
-    - Нажать на кнопку Submit
+    - Нажать на кнопку "Submit"
   expected-result: |
-    Под каждым полем выводится надпись, сообщающая о необходимости заполнить поле
+    Под каждым полем ввода выводится надпись, сообщающая о необходимости заполнить поле
+    
+- summary: |
+   Проверка регистрации нового профиля с невалидным email 
+  requirement: |
+    При вводе невалидного email регистрация невозможна 
+  prerequisites: |
+    - Открыта форма Sign up
+  test-data: |
+    Nickname = Morg
+    Email = crybaby.com
+    Password = 521goT  
+  steps:
+    - Ввести "Nickname"
+    - Ввести "Email"
+    - Ввести "Password"
+    - Ввести "Password Confirmation"
+    - Нажать "Submit"
+  expected-result: |
+    Под полем "Email" появляется надпись "Invalid email"
 
 - summary: |
     Проверка создания пробной игры без регистрации
