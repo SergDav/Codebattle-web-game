@@ -57,7 +57,7 @@
   test-data: |
     Empty
   steps:
-    - Нажать на "Try Simple battle"
+    - Нажать на "Try Simple Battle"
   expected-result: |
     Игра без регистрации успешно создана и отображается на экране
     
@@ -70,7 +70,7 @@
     - Выполнен вход в аккаунт на GitHub
     - Открыта форма Sign in
   test-data: |
-    Cайт https://codebattle.hexlet.io/
+    Empty
   steps:
     - Нажать кнопку "Sign in with GitHub"
   expected-result: |
@@ -85,10 +85,33 @@
     - Выполнен вход в аккаунт на Discord
     - Открыта форма Sign in
   test-data: |
-    Cайт https://codebattle.hexlet.io/
+    Empty
   steps:
     - Нажать кнопку "Sign in with Discord"
   expected-result: |
-    Пользователь автоматически переходит на главную страницу сайта, на главной странице отображается сообщение "Successfully authenticated"
+    Пользователь автоматически переходит на главную страницу сайта и на ней отображается сообщение "Successfully authenticated"
+
+- summary: |
+    Проверка восстановления пароля
+  requirement: |
+   На странице авторизации пользователь может восстановить свой пароль
+  prerequisites: |
+    - Открыта форма Sign in
+  test-data: |
+    Валидный Email
+  steps:
+    - Нажать кнопку "Sign in"
+    - Нажать на кнопку "Forgot your password?"
+    - Ввести валидный "Email"
+    - Нажать на кнопку "Submit"
+    - На экране выводится сообщение "We have sent you an email with instructions on how to reset your password"
+    - Перейти на страницу ранее указанной электронной почты 
+    - Открыть на почте письмо от noreply@codebattle-5f929.firebaseapp.com
+    - Перейти по ссылке из письма
+    - На экране выводится окно сброса пароля
+    - Заполнить поле "New password"
+    - Нажать на кнопку "Save"
+  expected-result: |
+    На экране выводится сообщение "Password changed. You can now sign in with your new password"
     
 
