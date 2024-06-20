@@ -4,11 +4,10 @@
   requirement: |
     При вводе требуемых данных пользователь проходит регистрацию на сайте
   prerequisites: |
-    Открыта форма Sign up
+    - Открыта форма Sign up
   test-data: |
     Empty
   steps:
-    - Нажать кнопку "Sign up"
     - Ввести "Nickname"
     - Ввести валидный "Email"
     - Ввести "Password"
@@ -22,9 +21,9 @@
   requirement: |
     При верном вводе логина и пароля пользователь должен успешно авторизоваться в системе
   prerequisites: |
-    Открыта форма Sign in
+    - Открыта форма Sign in
   test-data: |
-    Email = serejadwydow@gmail.com
+    Email = serejadawydow@gmail.com
     Password = 248jqC
   steps:
     - Ввести Email
@@ -38,7 +37,7 @@
   requirement: |
     При отсутствии данных в полях регистрация будет невозможна
   prerequisites:
-    Открыта форма Sign up
+    - Открыта форма Sign up
   test-data: |
     Empty
   steps:
@@ -54,13 +53,42 @@
   requirement: |
     Можно запустить тестовую игру без регистрации пользователя
   prerequisites: |
-    Открыта страница сайта https://codebattle.hexlet.io/
+    - Открыта страница сайта https://codebattle.hexlet.io/
   test-data: |
     Empty
   steps:
     - Нажать на "Try Simple battle"
   expected-result: |
     Игра без регистрации успешно создана и отображается на экране
+    
+- summary: |
+    Проверка авторизации пользователя через GitHub
+  requirement: |
+    Пользователь может авторизоваться на сайте с помощью своего аккаунта на GitHub
+  prerequisites: |
+    - Пользователь зарегистрирован на GitHub
+    - Выполнен вход в аккаунт на GitHub
+    - Открыта форма Sign in
+  test-data: |
+    Cайт https://codebattle.hexlet.io/
+  steps:
+    - Нажать кнопку "Sign in with GitHub"
+  expected-result: |
+    Пользователь автоматически переходит на главную страницу сайта и на ней отображается сообщение "Successfully authenticated"
 
+- summary: |
+    Проверка авторизации пользователя через Discord
+  requirement: |
+    Пользователь может авторизоваться на сайте с помощью своего аккаунта на Discord
+  prerequisites: |
+    - Пользователь зарегистрирован на Discord
+    - Выполнен вход в аккаунт на Discord
+    - Открыта форма Sign in
+  test-data: |
+    Cайт https://codebattle.hexlet.io/
+  steps:
+    - Нажать кнопку "Sign in with Discord"
+  expected-result: |
+    Пользователь автоматически переходит на главную страницу сайта, на главной странице отображается сообщение "Successfully authenticated"
+    
 
-  
