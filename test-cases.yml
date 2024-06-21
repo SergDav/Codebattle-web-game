@@ -1,15 +1,33 @@
 ---
 - summary: |
+    Проверка создания пробной игры без регистрации
+  requirement: |
+    Можно запустить тестовую игру без регистрации пользователя
+  prerequisites: |
+    - Открыта страница сайта https://codebattle.hexlet.io/
+  test-data: |
+    Empty
+  steps:
+    - Нажать на "Try Simple Battle"
+  expected-result: |
+    Игра без регистрации успешно создана и отображается на экране
+    
+- summary: |
     Успешная регистрация нового пользователя на сайте
   requirement: |
     При вводе требуемых данных пользователь проходит регистрацию на сайте
+    Пользователь должен иметь возможность создать учетную запись используя email
+    Никнейм должен быть от 3 до 16 символов
+    Никнейм может содержать только латинские буквы, цифры и знак подчеркивания
+    Длина пароля от 6 до 16 символов
+    Пароль может содержать латинские буквы, цифры и спец.символы
   prerequisites: |
     - Открыта форма Sign up
   test-data: |
     Empty
   steps:
     - Ввести "Nickname"
-    - Ввести валидный "Email"
+    - Ввести "Email"
     - Ввести "Password"
     - Ввести "Password Confirmation"
     - Нажать на кнопку "Submit"
@@ -63,19 +81,60 @@
     - Нажать "Submit"
   expected-result: |
     Под полем "Email" появляется надпись "Invalid email"
-
+    
 - summary: |
-    Проверка создания пробной игры без регистрации
+    Проверка регистрации нового профиля с пустым полем nickname
   requirement: |
-    Можно запустить тестовую игру без регистрации пользователя
-  prerequisites: |
-    - Открыта страница сайта https://codebattle.hexlet.io/
+   Никнейм должен быть от 3 до 16 символов
+  prerequisites:
+    - Открыта форма Sign up
   test-data: |
-    Empty
+    Email = tryagain@mail.com
+    Password = 567213tyA 
   steps:
-    - Нажать на "Try Simple Battle"
+    - Ввести "Nickname"
+    - Ввести "Email"
+    - Ввести "Password"
+    - Ввести "Password Confirmation"
+    - Нажать "Submit"
   expected-result: |
-    Игра без регистрации успешно создана и отображается на экране
+    Под полем "Nickname" появляется надпись "Nickname required"
+    
+- summary: |
+    Проверка регистрации нового профиля при ошибке в поле подтверждения пароля
+  requirement: |
+    При несовпадении паролей регистрация невозможна
+  prerequisites: |
+    - Открыта форма Sign up
+  test-data: |
+    Nickname = Ogon
+    Email = ohagain@mail.com
+    Password = q000111Q  
+  steps:
+    - Ввести "Nickname"
+    - Ввести "Email"
+    - Ввести "Password"
+    - Ввести "Password Confirmation" так, чтобы оно отличалось от "Password"
+    - Нажать "Submit"
+  expected-result: |
+    Под полем "Password Confirmation" появляется надпись "Passwords must match"
+    
+- summary: |
+    Проверка авторизации не зарегистрированного на сайте пользователя
+  requirement: |
+    При вводе незарегистрированного логина и пароля должно выводиться сообщение об ошибке авторизации
+  prerequisites: |
+    - Открыта форма Sign in
+  test-data: |
+    Email = nopainnogain@mail.com
+    Password = ZZZ450312
+  steps:
+    - Нажать кнопку "Sign in"
+    - Ввести "Email"
+    - Ввести "Password"
+    - Нажать на кнопку "Submit"
+  expected-result: |
+    Выводится сообщение об ошибке "EMAIL_NOT_FOUND"
     
 - summary: |
     Проверка авторизации пользователя через GitHub
