@@ -189,4 +189,40 @@
   expected-result: |
     На экране выводится сообщение "Password changed. You can now sign in with your new password"
     
+- summary: |
+    Проверка создания игры с ботом
+  requirement: |
+    Пользователь должен иметь возможность создать игру и играть в неё с ботом
+  prerequisites: |
+    Пользователь авторизован
+    Открыта главная страница сайта https://codebattle.hexlet.io/#lobby
+  test-data: |
+    Level = по умолчанию
+    Game Type = With a bot
+    Time control = по умолчанию
+    Choose task by name or tags = по умолчанию
+  steps:
+    - Нажимаем на кнопку "Create a game"
+    - Создаем игру по указанным параметрам (test-data)
+    - Нажимаем кнопку "Create the battle"
+  expected-result: |
+    Создалась и начинается игра против бота
 
+- summary: |
+    Проверка возможности выбора уровня сложности задания игры
+  requirement: |
+    Пользователь имеет возможность выбрать уровень сложности задания игры
+  prerequisites: |
+    Пользователь авторизован
+    Открыта главная страница сайта https://codebattle.hexlet.io/#lobby
+  test-data: |
+    Level = любой из доступных
+    Game Type = по умолчанию 
+    Time control = по умолчанию
+    Choose task by name or tags = по умолчанию
+  steps:
+    - Нажимаем на кнопку "Create a game"
+    - Создаем игру по указанным параметрам (test-data)
+    - Нажать "Create battle"
+  expected-result: |
+    Игра выбранного уровня сложности создалась
