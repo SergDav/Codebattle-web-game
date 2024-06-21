@@ -46,7 +46,7 @@
   steps:
     - Ввести Email
     - Ввести Password
-    - Нажать Submit
+    - Нажать на кнопку Submit
   expected-result: |
     Пользователь успешно авторизован
 
@@ -78,7 +78,7 @@
     - Ввести "Email"
     - Ввести "Password"
     - Ввести "Password Confirmation"
-    - Нажать "Submit"
+    - Нажать на кнопку "Submit"
   expected-result: |
     Под полем "Email" появляется надпись "Invalid email"
     
@@ -96,7 +96,7 @@
     - Ввести "Email"
     - Ввести "Password"
     - Ввести "Password Confirmation"
-    - Нажать "Submit"
+    - Нажать на кнопку "Submit"
   expected-result: |
     Под полем "Nickname" появляется надпись "Nickname required"
     
@@ -115,7 +115,7 @@
     - Ввести "Email"
     - Ввести "Password"
     - Ввести "Password Confirmation" так, чтобы оно отличалось от "Password"
-    - Нажать "Submit"
+    - Нажать на кнопку "Submit"
   expected-result: |
     Под полем "Password Confirmation" появляется надпись "Passwords must match"
     
@@ -129,7 +129,7 @@
     Email = nopainnogain@mail.com
     Password = ZZZ450312
   steps:
-    - Нажать кнопку "Sign in"
+    - Нажать на кнопку "Sign in"
     - Ввести "Email"
     - Ввести "Password"
     - Нажать на кнопку "Submit"
@@ -147,7 +147,7 @@
   test-data: |
     Empty
   steps:
-    - Нажать кнопку "Sign in with GitHub"
+    - Нажать на кнопку "Sign in with GitHub"
   expected-result: |
     Пользователь автоматически переходит на главную страницу сайта и на ней отображается сообщение "Successfully authenticated"
 
@@ -162,7 +162,7 @@
   test-data: |
     Empty
   steps:
-    - Нажать кнопку "Sign in with Discord"
+    - Нажать на кнопку "Sign in with Discord"
   expected-result: |
     Пользователь автоматически переходит на главную страницу сайта и на ней отображается сообщение "Successfully authenticated"
 
@@ -175,7 +175,7 @@
   test-data: |
     Валидный Email
   steps:
-    - Нажать кнопку "Sign in"
+    - Нажать на кнопку "Sign in"
     - Нажать на кнопку "Forgot your password?"
     - Ввести валидный "Email"
     - Нажать на кнопку "Submit"
@@ -202,9 +202,9 @@
     Time control = по умолчанию
     Choose task by name or tags = по умолчанию
   steps:
-    - Нажимаем на кнопку "Create a game"
+    - Нажать на кнопку "Create a game"
     - Создаем игру по указанным параметрам (test-data)
-    - Нажимаем кнопку "Create the battle"
+    - Нажать на кнопку "Create the battle"
   expected-result: |
     Создалась и начинается игра против бота
 
@@ -221,9 +221,9 @@
     Time control = по умолчанию
     Choose task by name or tags = по умолчанию
   steps:
-    - Нажимаем на кнопку "Create a game"
+    - Нажать на кнопку "Create a game"
     - Создаем игру по указанным параметрам (test-data)
-    - Нажать "Create battle"
+    - Нажать на кнопку "Create battle"
   expected-result: |
     Игра выбранного уровня сложности создалась
 
@@ -240,10 +240,10 @@
     Time control = по умолчанию
     Choose task by name or tags = по умолчанию
   steps:
-    - Нажимаем на кнопку "Create a game"
+    - Нажать на кнопку "Create a game"
     - Нажимаем кнопку "With a friend"
     - Вписываем и/или выбираем имя друга (второй пользователь)
-    - Нажимем кнопку "Create invite"
+    - Нажать на кнопку "Create invite"
   expected-result: |
     Пользователь получил приглашение на игру
 
@@ -259,6 +259,41 @@
     Empty
   steps:
     - В профиле второго пользователя нажимаем на значок с двумя скрещенными мечами в шапке главной страницы сайта 
-    - Нажимаем на кнопку "Accept"
+    - Нажать на кнопку "Accept"
   expected-result: |
     Оба пользователя автоматически перенаправляются на страницу с игрой
+    
+- summary: |
+    Проверка отклонения приглашения от друга на игру
+  requirement: |
+    Пользователи должны иметь возможность отклонять отправленное им приглашение на игру 
+  prerequisites: |
+    Два авторизованных пользователя
+    Открыта главная страница сайта "https://codebattle.hexlet.io/#lobby"
+    Приглашение на игру отправлено второму пользователю
+  test-data: |
+    Empty
+  steps:
+    - В профиле второго пользователя нажимаем на значок с двумя скрещенными мечами в шапке главной страницы сайта 
+    - Нажать на кнопку "Decline"
+  expected-result: |
+    Уведомление о приглашении пропадает у обоих пользователей
+    
+- summary: |
+    Проверка создания игры с другим пользователем
+  requirement: |
+    Пользователи должны иметь возможность создавать игры и играть в них против других пользователей
+  prerequisites: |
+    Пользователь авторизован
+    Открыта главная страница сайта "https://codebattle.hexlet.io/#lobby"
+  test-data: |
+    Level = по умолчанию
+    Game Type = "With other user"
+    Time control = по умолчанию
+    Choose task by name or tags = по умолчанию
+  steps:
+    - Нажать на кнопку "Create a game"
+    - Создаем игру по указанным параметрам (test-data)
+    - Нажать на кнопку "Create battle"
+  expected-result: |
+    Игра отображается в списке (LOBBY) на главной странице
