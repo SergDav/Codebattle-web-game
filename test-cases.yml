@@ -50,7 +50,7 @@
     Проверка регистрации пользователя при незаполненных данных
   requirement: |
     При отсутствии данных в полях регистрация будет невозможна
-  prerequisites:
+  prerequisites: |
     - Открыта форма Sign up
   test-data: |
     Empty
@@ -82,7 +82,7 @@
     Проверка регистрации нового профиля с пустым полем Nickname
   requirement: |
     Никнейм должен быть от 3 до 16 символов
-  prerequisites:
+  prerequisites: |
     - Открыта форма Sign up
   test-data: |
     Email = tryagain@mail.com
